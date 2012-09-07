@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+	<poweredBy>
+		<logo name="Maven" href="http://maven.apache.org/" img="http://maven.apache.org/images/logos/maven-feather.png" />
+	</poweredBy>
+
+	<publishDate format="yyyy-MM-dd HH:mm:ss" />
+	
+	<version />
+
+	<body>
+		<!-- linky se dedi -->
+		<links>
+			<item name="Wiki" href="${kmx.xwiki.url}" />
+			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}"/>
+			<item name="${project.issueManagement.system}" href="${project.issueManagement.url}"/>
+			<item name="Sites" href="${kmx.sites.url}" />
+		</links>
+		
+		<!-- menu ne pokud neni explicitne receno -->
+		<menu name="${kmx.project.name}">
+			<item name="Home" href="index.html" />
+			<item name="Wiki" href="${kmx.xwiki.url}/bin/view/KnowledgeBase/KomixMavenSuperPom" />
+			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}/view/komix-libs/" />
+		</menu>
+
+		<menu ref="reports"/>
+
+	</body>
+
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-default-skin</artifactId>
+		<version>1.0</version>
+	</skin>
+
+</project>
