@@ -12,19 +12,15 @@
 	<version />
 
 	<body>
-		<!-- linky se dedi -->
 		<links>
-			<item name="Wiki" href="${kmx.xwiki.url}" />
 			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}"/>
 			<item name="${project.issueManagement.system}" href="${project.issueManagement.url}"/>
-			<item name="Sites" href="${kmx.sites.url}" />
 		</links>
 		
-		<!-- menu ne pokud neni explicitne receno -->
-		<menu name="${kmx.project.name}">
+		<menu name="${project.name}">
 			<item name="Home" href="index.html" />
-			<item name="Wiki" href="${kmx.xwiki.url}/bin/view/KnowledgeBase/KomixMavenSuperPom" />
-			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}/view/komix-libs/" />
+			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}/view/${project.name}" />
+			<item name="${project.issueManagement.system}" href="${project.issueManagement.url}"/>
 		</menu>
 
 		<menu ref="reports"/>

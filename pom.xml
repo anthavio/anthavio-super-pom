@@ -27,24 +27,23 @@
 	
 	<distributionManagement>
 		<repository>
-			<id>github-snapshots</id>
-			<url>http://serverst.komix.com:8280/nexus/content/repositories/releases</url>
+			<id>sonatype-oss-staging</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 		<snapshotRepository>
-			<id>github-releases</id>
-			<url>http://serverst.komix.com:8280/nexus/content/repositories/snapshots</url>
+			<id>sonatype-oss-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
-		<!--
-		<downloadUrl>https://github.com/anthavio/${project.name}</downloadUrl>
+		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
 		<site>
 			<id>github.com</id>
 			<url>https://github.com/anthavio/${project.name}</url>
 		</site>
-		-->
+		
 	</distributionManagement>
 
 	<ciManagement>
-		<system>jenkins</system>
+		<system>Jenkins</system>
 		<url>http://dev.anthavio.com/jenkins</url>
 		<notifiers>
 			<notifier>
@@ -53,20 +52,28 @@
 			</notifier>
 		</notifiers>
 	</ciManagement>
-	<!--
+	
 	<issueManagement>
-		<system>ProjectX</system>
-		<url>http://serverst.komix.com:8080/projectx/</url>
+		<system>GitHub</system>
+		<url>${project.scm.url}/issues</url>
 	</issueManagement>
-
+<!--
 	<organization>
-		<name>Komix s.r.o.</name>
-		<url>http://www.komix.cz</url>
+		<name>Anthavio</name>
+		<url>http://www.anthavio.com</url>
 	</organization>
-	-->
+-->
 	<developers>
 		<developer>
 			<id>anthavio</id>
+			<name>Martin Vaněk</name>
+			<email>anthavio@post.cz</email>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>vanek</id>
 			<name>Martin Vaněk</name>
 			<email>anthavio@post.cz</email>
 			<roles>
@@ -1011,7 +1018,7 @@
 								<report>buildmetadata-report</report>
 							</reports>
 						</plugin>
-						
+						<!--
 						<plugin>
 							<groupId>net.sf</groupId>
 							<artifactId>stat-scm</artifactId>
@@ -1019,7 +1026,7 @@
 								<skip>${stat-scm.skip}</skip>
 							</configuration>
 						</plugin>
-
+						-->
 					</reportPlugins>
 				</configuration>
 			</plugin>
