@@ -36,8 +36,8 @@
 		</snapshotRepository>
 		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
 		<site>
-			<id>github.com</id>
-			<url>https://github.com/anthavio/${project.name}</url>
+			<id>github-project-site</id>
+			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
 		</site>
 		
 	</distributionManagement>
@@ -85,6 +85,24 @@
 	<build>
 
 		<defaultGoal>install</defaultGoal>
+		
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-gitexe</artifactId>
+				<version>1.8</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-manager-plexus</artifactId>
+				<version>1.4</version>
+			</extension>
+			<extension>
+				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
+				<artifactId>wagon-gitsite</artifactId>
+				<version>0.3.1</version>
+			</extension>
+		</extensions>
 
 		<pluginManagement>
 			<plugins>
