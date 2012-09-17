@@ -695,6 +695,8 @@
 						<quiet>true</quiet>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<docencoding>${project.build.sourceEncoding}</docencoding>
+						<minmemory>64m</minmemory>
+						<maxmemory>128m</maxmemory>
 					</configuration>
 				</plugin>
 	
