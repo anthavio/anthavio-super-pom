@@ -184,6 +184,7 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.12.3</version>
 					<configuration>
+						<argLine>-Xms64m -Xmx128m</argLine>
 						<systemPropertyVariables>
 							<java.awt.headless>${java.awt.headless}</java.awt.headless>
 						</systemPropertyVariables>
