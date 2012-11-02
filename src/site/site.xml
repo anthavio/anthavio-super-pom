@@ -19,7 +19,7 @@
 		
 		<menu name="${project.name}">
 			<item name="Home" href="index.html" />
-			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}/view/${project.name}" />
+			<item name="${project.ciManagement.system}" href="${project.ciManagement.url}" />
 			<item name="${project.issueManagement.system}" href="${project.issueManagement.url}"/>
 		</menu>
 
@@ -29,8 +29,15 @@
 
 	<skin>
 		<groupId>org.apache.maven.skins</groupId>
-		<artifactId>maven-default-skin</artifactId>
-		<version>1.0</version>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.3.0</version>
 	</skin>
+
+	<custom>
+		<fluidoSkin>
+			<topBarEnabled>true</topBarEnabled>
+			<sideBarEnabled>true</sideBarEnabled>
+		</fluidoSkin>
+	</custom>
 
 </project>

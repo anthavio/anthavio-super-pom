@@ -19,6 +19,11 @@
 		<aspectj.version>1.6.12</aspectj.version>
 	</properties>
 	
+	<!--
+	<url>http://anthavio.github.com/${project.name}</url>
+	<url>http://dev.anthavio.org/${project.name}/${project.version}/</url>
+	-->
+	<url>zxzx</url>
 	<scm>
 		<connection>scm:git:git://github.com/anthavio/${project.name}.git</connection>
 		<developerConnection>scm:git:git@github.com:anthavio/${project.name}.git</developerConnection>
@@ -26,19 +31,28 @@
 	</scm>
 	
 	<distributionManagement>
-		<repository>
-			<id>sonatype-oss-staging</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>sonatype-oss-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+		<!--
 		<site>
 			<id>github-project-site</id>
 			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
 		</site>
+		-->
+		<site>
+			<id>dev.anthavio.org</id>
+			<url>scp://dev.anthavio.org/opt/bldsrv/server/webapps/maven-sites/${project.name}/${project.version}/</url>
+		</site>
+		
+		<repository>
+			<id>sonatype-oss-staging</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		
+		<snapshotRepository>
+			<id>sonatype-oss-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		
+		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
 		
 	</distributionManagement>
 
@@ -54,7 +68,7 @@
 	</ciManagement>
 	
 	<issueManagement>
-		<system>GitHub</system>
+		<system>Issues</system>
 		<url>${project.scm.url}/issues</url>
 	</issueManagement>
 <!--
@@ -104,15 +118,15 @@
 			</extension>
 
 			<extension>
-       <groupId>org.apache.maven.wagon</groupId>
-       <artifactId>wagon-scm</artifactId>
-       <version>2.2</version>
-     </extension>
-     <extension>
-       <groupId>org.apache.maven.wagon</groupId>
-       <artifactId>wagon-ssh</artifactId>
-       <version>2.2</version>
-     </extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-scm</artifactId>
+				<version>2.2</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.2</version>
+			</extension>
 
 		</extensions>
 
@@ -186,10 +200,32 @@
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.2</version>
 					<configuration>
+						<!--<skipDeploy>true</skipDeploy>-->
 						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
 						<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 					</configuration>
 				</plugin>
+			
+				<plugin>
+					<groupId>com.github.github</groupId>
+					<artifactId>site-maven-plugin</artifactId>
+					<version>0.7</version>
+					<configuration>
+						<message>Creating site for ${project.name} ${project.version}</message>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>site</goal>
+							</goals>
+							<phase>site-deploy</phase>
+							<configuration>
+								<merge>true</merge>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				
 				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -350,8 +386,8 @@
 				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-        	<artifactId>maven-shade-plugin</artifactId>
-        	<version>2.0</version>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>2.0</version>
 				</plugin>
 				
 				<!-- Tools -->
@@ -622,7 +658,7 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
 					<version>1.7</version>
-        </plugin>
+				</plugin>
         
         <!-- http://www.smartics.eu/maven-buildmetadata-plugin/ -->
 				<plugin>
@@ -1086,7 +1122,13 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
-
+<!-- http://minds.coremedia.com/2012/09/11/problem-solved-deploy-multi-module-maven-project-site-as-github-pages/ -->
+<!--
+			<plugin>
+					<groupId>com.github.github</groupId>
+					<artifactId>site-maven-plugin</artifactId>
+			</plugin>
+-->
 		</plugins>
 		
 	</build>
