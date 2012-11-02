@@ -20,9 +20,9 @@
 	</properties>
 	
 	<scm>
-		<connection>scm:git:git://github.com/anthavio/anthavio-super-pom.git</connection>
-		<developerConnection>scm:git:git@github.com:anthavio/anthavio-super-pom.git</developerConnection>
-		<url>https://github.com/anthavio/anthavio-super-pom</url>
+		<connection>scm:git:git://github.com/anthavio/${project.name}.git</connection>
+		<developerConnection>scm:git:git@github.com:anthavio/${project.name}.git</developerConnection>
+		<url>https://github.com/anthavio/${project.name}</url>
 	</scm>
 	
 	<distributionManagement>
@@ -44,7 +44,7 @@
 
 	<ciManagement>
 		<system>Jenkins</system>
-		<url>http://dev.anthavio.com/jenkins</url>
+		<url>http://dev.anthavio.com/jenkins/view/${project.name}</url>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
