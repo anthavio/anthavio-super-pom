@@ -265,7 +265,7 @@
 								<Implementation-Date>${BUILD_ID}</Implementation-Date>
 								<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 
-								<!-- maven-buildmetadata-plugin -->
+								<!-- buildmetadata-maven-plugin -->
 								<Built-Host>${build.host.name}</Built-Host>
 								<Built-OS>${build.os.name} / ${build.os.arch} / ${build.os.version}</Built-OS>
 								<Built-By>${build.user}</Built-By>
@@ -306,7 +306,7 @@
 								<Implementation-Date>${BUILD_ID}</Implementation-Date>
 								<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 								
-								<!-- maven-buildmetadata-plugin -->
+								<!-- buildmetadata-maven-plugin -->
 								<Built-Host>${build.host.name}</Built-Host>
 								<Built-OS>${build.os.name} / ${build.os.arch} / ${build.os.version}</Built-OS>
 								<Built-By>${build.user}</Built-By>
@@ -364,7 +364,7 @@
 								<Implementation-Date>${BUILD_ID}</Implementation-Date>
 								<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 								
-								<!-- maven-buildmetadata-plugin -->
+								<!-- buildmetadata-maven-plugin -->
 								<Built-Host>${build.host.name}</Built-Host>
 								<Built-OS>${build.os.name} / ${build.os.arch} / ${build.os.version}</Built-OS>
 								<Built-By>${build.user}</Built-By>
@@ -660,15 +660,15 @@
 					<version>1.7</version>
 				</plugin>
         
-        <!-- http://www.smartics.eu/maven-buildmetadata-plugin/ -->
+        <!-- http://www.smartics.eu/buildmetadata-maven-plugin/ -->
 				<plugin>
 					<groupId>de.smartics.maven.plugin</groupId>
-					<artifactId>maven-buildmetadata-plugin</artifactId>
-					<version>1.1.5</version>
+					<artifactId>buildmetadata-maven-plugin</artifactId>
+					<version>1.1.7</version>
 					<executions>
 						<execution>
 							<id>provide-metadata</id>
-							<phase>validate</phase>
+							<phase>initialize</phase>
 							<goals>
 								<goal>provide-buildmetadata</goal>
 							</goals>
@@ -1031,7 +1031,7 @@
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>de.smartics.maven.plugin</groupId>
-										<artifactId>maven-buildmetadata-plugin</artifactId>
+										<artifactId>buildmetadata-maven-plugin</artifactId>
 										<versionRange>[0.0.1,)</versionRange>
 										<goals>
 											<goal>provide-buildmetadata</goal>
@@ -1095,7 +1095,7 @@
 
 						<plugin>
 							<groupId>de.smartics.maven.plugin</groupId>
-							<artifactId>maven-buildmetadata-plugin</artifactId>
+							<artifactId>buildmetadata-maven-plugin</artifactId>
 							<reports>
 								<report>buildmetadata-report</report>
 							</reports>
@@ -1115,7 +1115,7 @@
 
 			<plugin>
 				<groupId>de.smartics.maven.plugin</groupId>
-				<artifactId>maven-buildmetadata-plugin</artifactId>
+				<artifactId>buildmetadata-maven-plugin</artifactId>
 			</plugin>
 			
 			<plugin>
