@@ -19,32 +19,46 @@
 		<aspectj.version>1.6.12</aspectj.version>
 	</properties>
 	
+	<!--
+	<url>http://anthavio.github.com/${project.name}</url>
+	<url>http://dev.anthavio.org/${project.name}/${project.version}/</url>
+	-->
+	<url>zxzx</url>
 	<scm>
-		<connection>scm:git:git://github.com/anthavio/anthavio-super-pom.git</connection>
-		<developerConnection>scm:git:git@github.com:anthavio/anthavio-super-pom.git</developerConnection>
-		<url>https://github.com/anthavio/anthavio-super-pom</url>
+		<connection>scm:git:git://github.com/anthavio/${project.name}.git</connection>
+		<developerConnection>scm:git:git@github.com:anthavio/${project.name}.git</developerConnection>
+		<url>https://github.com/anthavio/${project.name}</url>
 	</scm>
 	
 	<distributionManagement>
-		<repository>
-			<id>sonatype-oss-staging</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>sonatype-oss-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+		<!--
 		<site>
 			<id>github-project-site</id>
 			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
 		</site>
+		-->
+		<site>
+			<id>dev.anthavio.org</id>
+			<url>scp://dev.anthavio.org/opt/bldsrv/server/webapps/maven-sites/${project.name}/${project.version}/</url>
+		</site>
+		
+		<repository>
+			<id>sonatype-oss-staging</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		
+		<snapshotRepository>
+			<id>sonatype-oss-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		
+		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
 		
 	</distributionManagement>
 
 	<ciManagement>
 		<system>Jenkins</system>
-		<url>http://dev.anthavio.com/jenkins</url>
+		<url>http://dev.anthavio.com/jenkins/view/${project.name}</url>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
@@ -54,7 +68,7 @@
 	</ciManagement>
 	
 	<issueManagement>
-		<system>GitHub</system>
+		<system>Issues</system>
 		<url>${project.scm.url}/issues</url>
 	</issueManagement>
 <!--
@@ -95,13 +109,25 @@
 			<extension>
 				<groupId>org.apache.maven.scm</groupId>
 				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>1.4</version>
+				<version>1.8</version>
 			</extension>
 			<extension>
 				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
 				<artifactId>wagon-gitsite</artifactId>
 				<version>0.3.1</version>
 			</extension>
+
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-scm</artifactId>
+				<version>2.2</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.2</version>
+			</extension>
+
 		</extensions>
 
 		<pluginManagement>
@@ -135,7 +161,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>2.12.3</version>
+					<version>2.12.4</version>
 					<executions>
 						<execution>
 							<id>integration-test</id>
@@ -172,17 +198,39 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.1</version>
+					<version>3.2</version>
 					<configuration>
+						<!--<skipDeploy>true</skipDeploy>-->
 						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
 						<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 					</configuration>
 				</plugin>
+			
+				<plugin>
+					<groupId>com.github.github</groupId>
+					<artifactId>site-maven-plugin</artifactId>
+					<version>0.7</version>
+					<configuration>
+						<message>Creating site for ${project.name} ${project.version}</message>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>site</goal>
+							</goals>
+							<phase>site-deploy</phase>
+							<configuration>
+								<merge>true</merge>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				
 				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.12.3</version>
+					<version>2.12.4</version>
 					<configuration>
 						<argLine>-Xms64m -Xmx128m</argLine>
 						<systemPropertyVariables>
@@ -217,7 +265,7 @@
 								<Implementation-Date>${BUILD_ID}</Implementation-Date>
 								<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 
-								<!-- maven-buildmetadata-plugin -->
+								<!-- buildmetadata-maven-plugin -->
 								<Built-Host>${build.host.name}</Built-Host>
 								<Built-OS>${build.os.name} / ${build.os.arch} / ${build.os.version}</Built-OS>
 								<Built-By>${build.user}</Built-By>
@@ -246,9 +294,9 @@
 						<archive>
 							<manifest>
 								<!--
-								[Specification|Implementation]-Title: komix-common
-								[Specification|Implementation]-Version: 1.0.2-SNAPSHOT
-								[Specification|Implementation]-Vendor: Komix s.r.o.
+								[Specification|Implementation]-Title: xxx
+								[Specification|Implementation]-Version: yyy
+								[Specification|Implementation]-Vendor: zzz
 								-->
 								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
@@ -258,7 +306,7 @@
 								<Implementation-Date>${BUILD_ID}</Implementation-Date>
 								<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 								
-								<!-- maven-buildmetadata-plugin -->
+								<!-- buildmetadata-maven-plugin -->
 								<Built-Host>${build.host.name}</Built-Host>
 								<Built-OS>${build.os.name} / ${build.os.arch} / ${build.os.version}</Built-OS>
 								<Built-By>${build.user}</Built-By>
@@ -302,7 +350,7 @@
 
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.2</version>
+					<version>2.3</version>
 					<configuration>
 						<archive>
 							<manifest>
@@ -316,7 +364,7 @@
 								<Implementation-Date>${BUILD_ID}</Implementation-Date>
 								<Implementation-Version>${BUILD_TAG}</Implementation-Version>
 								
-								<!-- maven-buildmetadata-plugin -->
+								<!-- buildmetadata-maven-plugin -->
 								<Built-Host>${build.host.name}</Built-Host>
 								<Built-OS>${build.os.name} / ${build.os.arch} / ${build.os.version}</Built-OS>
 								<Built-By>${build.user}</Built-By>
@@ -334,6 +382,12 @@
 							</manifestEntries>
 						</archive>
 					</configuration>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>2.0</version>
 				</plugin>
 				
 				<!-- Tools -->
@@ -406,7 +460,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.1.2</version>
+					<version>2.2.1</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -416,6 +470,12 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.9</version>
 				</plugin>
 				
 				<!-- Non Maven Core -->
@@ -575,15 +635,15 @@
 				
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sql-maven-plugin</artifactId>
+					<version>1.5</version>
+				</plugin>
+
+				<!-- http://mojo.codehaus.org/cobertura-maven-plugin -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>cobertura-maven-plugin</artifactId>
-					<version>2.5.1</version>
-					<dependencies>
-						<dependency>
-							<groupId>net.sourceforge.cobertura</groupId>
-							<artifactId>cobertura</artifactId>
-							<version>1.9.4.1</version>
-						</dependency>
-					</dependencies>
+					<version>2.5.2</version>
 				</plugin>
 
 				<!-- http://mojo.codehaus.org/versions-maven-plugin/ -->
@@ -598,17 +658,17 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
 					<version>1.7</version>
-        </plugin>
+				</plugin>
         
-        <!-- http://www.smartics.eu/maven-buildmetadata-plugin/ -->
+        <!-- http://www.smartics.eu/buildmetadata-maven-plugin/ -->
 				<plugin>
 					<groupId>de.smartics.maven.plugin</groupId>
-					<artifactId>maven-buildmetadata-plugin</artifactId>
-					<version>1.1.5</version>
+					<artifactId>buildmetadata-maven-plugin</artifactId>
+					<version>1.1.7</version>
 					<executions>
 						<execution>
 							<id>provide-metadata</id>
-							<phase>validate</phase>
+							<phase>initialize</phase>
 							<goals>
 								<goal>provide-buildmetadata</goal>
 							</goals>
@@ -626,7 +686,7 @@
 				<plugin>
 					<groupId>com.mysema.maven</groupId>
 					<artifactId>maven-apt-plugin</artifactId>
-					<version>1.0.3</version>
+					<version>1.0.4</version>
 					<configuration>
 						<outputDirectory>target/generated-sources/querydsl</outputDirectory>
 						<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
@@ -654,7 +714,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>appassembler-maven-plugin</artifactId>
-					<version>1.2.2</version>
+					<version>1.3</version>
 				</plugin>
 				
 				<!-- http://evgeny-goldin.com/wiki/Maven-plugins -->
@@ -681,7 +741,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-changes-plugin</artifactId>
-					<version>2.7.1</version>
+					<version>2.8</version>
 					<configuration>
 						<xmlPath>${basedir}/src/changes.xml</xmlPath>
 					</configuration>
@@ -690,7 +750,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.8.1</version>
+					<version>2.9</version>
 					<configuration>
 						<quiet>true</quiet>
 						<encoding>${project.build.sourceEncoding}</encoding>
@@ -734,7 +794,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>2.6</version>
 					<configuration>
 						<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 						<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
@@ -744,7 +804,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.12.3</version>
+					<version>2.12.4</version>
 				</plugin>
 				
 				<!-- Non Maven Core Reporting Plugins -->
@@ -783,7 +843,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>2.4.0</version>
+					<version>2.5.2</version>
 					<configuration>
 						<effort>Max</effort>
 						<threshold>Low</threshold>
@@ -801,6 +861,8 @@
 					<artifactId>stat-scm</artifactId>
 					<version>1.2.0</version>
 				</plugin>
+				
+				<!-- Eclipse lifecycle-mapping -->
 
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -820,7 +882,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<execute />
+										<ignore />
 									</action>
 								</pluginExecution>
 
@@ -834,7 +896,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- better run manualy -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -848,7 +910,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- better run manualy -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -862,7 +924,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- better run manualy -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -876,7 +938,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- better run manualy -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -891,7 +953,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- Eclipse AJDT weaves -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -905,7 +967,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- m2e-wtp does it -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -919,7 +981,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- Skip in Eclipse -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -933,7 +995,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- Skip in Eclipse -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -948,7 +1010,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- Skip in Eclipse -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -963,21 +1025,21 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- Fails under m2e 1.0.1 -->
+										<ignore />
 									</action>
 								</pluginExecution>
 
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>de.smartics.maven.plugin</groupId>
-										<artifactId>maven-buildmetadata-plugin</artifactId>
+										<artifactId>buildmetadata-maven-plugin</artifactId>
 										<versionRange>[0.0.1,)</versionRange>
 										<goals>
 											<goal>provide-buildmetadata</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- Fails under m2e 1.0.1 -->
+										<ignore />
 									</action>
 								</pluginExecution>
 								
@@ -1034,7 +1096,7 @@
 
 						<plugin>
 							<groupId>de.smartics.maven.plugin</groupId>
-							<artifactId>maven-buildmetadata-plugin</artifactId>
+							<artifactId>buildmetadata-maven-plugin</artifactId>
 							<reports>
 								<report>buildmetadata-report</report>
 							</reports>
@@ -1054,14 +1116,20 @@
 
 			<plugin>
 				<groupId>de.smartics.maven.plugin</groupId>
-				<artifactId>maven-buildmetadata-plugin</artifactId>
+				<artifactId>buildmetadata-maven-plugin</artifactId>
 			</plugin>
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
-
+<!-- http://minds.coremedia.com/2012/09/11/problem-solved-deploy-multi-module-maven-project-site-as-github-pages/ -->
+<!--
+			<plugin>
+					<groupId>com.github.github</groupId>
+					<artifactId>site-maven-plugin</artifactId>
+			</plugin>
+-->
 		</plugins>
 		
 	</build>
