@@ -754,7 +754,6 @@
 						<quiet>true</quiet>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<docencoding>${project.build.sourceEncoding}</docencoding>
-						<minmemory>32m</minmemory>
 						<maxmemory>128m</maxmemory>
 					</configuration>
 				</plugin>
@@ -932,7 +931,7 @@
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>com.mysema.maven</groupId>
-										<artifactId>maven-apt-plugin</artifactId>
+										<artifactId>apt-maven-plugin</artifactId>
 										<versionRange>[0.0.1,)</versionRange>
 										<goals>
 											<goal>process</goal>
