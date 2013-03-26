@@ -54,10 +54,10 @@
 		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
 		
 	</distributionManagement>
-
+	
 	<ciManagement>
 		<system>Jenkins</system>
-		<url>http://dev.anthavio.com/jenkins/view/${project.name}</url>
+		<url>https://anthavio.ci.cloudbees.com/view/${project.name}</url>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
@@ -67,15 +67,23 @@
 	</ciManagement>
 	
 	<issueManagement>
-		<system>Issues</system>
+		<system>GitHub Issues</system>
 		<url>${project.scm.url}/issues</url>
 	</issueManagement>
-<!--
-	<organization>
-		<name>Anthavio</name>
-		<url>http://www.anthavio.com</url>
-	</organization>
--->
+
+	<repositories>
+		
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+		  <id>smartics</id>
+		  <url>http://www.smartics.eu/nexus/content/repositories/public</url>
+		  <releases><enabled>true</enabled></releases>
+		  <snapshots><enabled>false</enabled></snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<developers>
 		<developer>
 			<id>anthavio</id>
