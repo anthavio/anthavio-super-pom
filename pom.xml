@@ -8,9 +8,18 @@
 	<packaging>pom</packaging>
 	
 	<name>anthavio-super-pom</name>
+
+	<description>Maven Super Pom</description>
 	
 	<inceptionYear>2012</inceptionYear>
-	<description>Anthavio Super Pom</description>
+	
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,38 +30,48 @@
 	
 	<url>http://anthavio.github.com/${project.name}</url>
 	
-	<!--
-	<url>http://anthavio.github.com/${project.name}</url>
-	<url>http://dev.anthavio.org/${project.name}/${project.version}/</url>
-	-->
 	<scm>
+		<url>https://github.com/anthavio/${project.name}</url>
 		<connection>scm:git:git://github.com/anthavio/${project.name}.git</connection>
 		<developerConnection>scm:git:git@github.com:anthavio/${project.name}.git</developerConnection>
-		<url>https://github.com/anthavio/${project.name}</url>
+		<!--
+		<connection>scm:git:ssh://git@git.cloudbees.com/anthavio/${project.name}.git</connection>
+		<developerConnection>scm:git:ssh://git@git.cloudbees.com/anthavio/${project.name}.git</developerConnection>
+		-->
 	</scm>
 	
 	<distributionManagement>
+	
 		<site>
 			<id>github-project-site</id>
 			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
 		</site>
-		<!--
-		<site>
-			<id>anthavio-cloudbees-site</id>
-			<url>dav:https://repository-anthavio.forge.cloudbees.com/release/sites/${project.name}</url>
-		</site>
-		-->
+		
+		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+		
 		<repository>
 			<id>sonatype-oss-staging</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
-		
 		<snapshotRepository>
 			<id>sonatype-oss-snapshots</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		
-		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+		<!--
+		<site>
+			<id>anthavio-cloudbees-site</id>
+			<url>dav:https://repository-anthavio.forge.cloudbees.com/release/sites/${project.name}</url>
+		</site>
+		<repository>
+			<id>anthavio-cloudbees-release</id>
+			<url>dav:https://repository-anthavio.forge.cloudbees.com/release</url>
+		</repository>
+		<snapshotRepository>
+			<id>anthavio-cloudbees-snapshot</id>
+			<url>dav:https://repository-anthavio.forge.cloudbees.com/snapshot</url>
+		</snapshotRepository>
+		-->
 		
 	</distributionManagement>
 	
@@ -127,15 +146,21 @@
 
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-scm</artifactId>
-				<version>2.2</version>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.4</version>
 			</extension>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>2.2</version>
+				<artifactId>wagon-webdav-jackrabbit</artifactId>
+				<version>2.4</version>
 			</extension>
-
+			<!--
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-scm</artifactId>
+				<version>2.4</version>
+			</extension>
+			-->
 		</extensions>
 
 		<pluginManagement>

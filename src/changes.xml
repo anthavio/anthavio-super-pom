@@ -5,7 +5,7 @@
 	<!-- http://maven.apache.org/plugins/maven-changes-plugin/changes.html -->
 
 	<properties>
-		<title>anthavio-bom changes</title>
+		<title>changes</title>
 		<author email="anthavio@post.cz">Martin Vaněk</author>
 	</properties>
 
