@@ -19,6 +19,8 @@
 		<aspectj.version>1.7.1</aspectj.version>
 	</properties>
 	
+	<url>http://anthavio.github.com/${project.name}</url>
+	
 	<!--
 	<url>http://anthavio.github.com/${project.name}</url>
 	<url>http://dev.anthavio.org/${project.name}/${project.version}/</url>
@@ -30,17 +32,16 @@
 	</scm>
 	
 	<distributionManagement>
-		<!--
 		<site>
 			<id>github-project-site</id>
 			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
 		</site>
-		-->
+		<!--
 		<site>
-			<id>dev.anthavio.org</id>
-			<url>scp://dev.anthavio.org/opt/bldsrv/server/webapps/maven-sites/${project.name}/${project.version}/</url>
+			<id>anthavio-cloudbees-site</id>
+			<url>dav:https://repository-anthavio.forge.cloudbees.com/release/sites/${project.name}</url>
 		</site>
-		
+		-->
 		<repository>
 			<id>sonatype-oss-staging</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
@@ -57,7 +58,7 @@
 	
 	<ciManagement>
 		<system>Jenkins</system>
-		<url>https://anthavio.ci.cloudbees.com/view/${project.name}</url>
+		<url>https://anthavio.ci.cloudbees.com</url>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
@@ -785,10 +786,12 @@
 						<linkXref>true</linkXref>
 						<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 						<minimumTokens>100</minimumTokens>
+						<!--
 						<rulesets>
 							<ruleset>/rulesets/basic.xml</ruleset>
 							<ruleset>/rulesets/unusedcode.xml</ruleset>
 						</rulesets>
+						-->
 						<excludeRoots>
 							<excludeRoot>${basedir}/target/generated-sources</excludeRoot>
 							<excludeRoot>${basedir}/target/jsp-source</excludeRoot>
