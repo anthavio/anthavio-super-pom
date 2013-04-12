@@ -92,7 +92,16 @@
 	</issueManagement>
 
 	<repositories>
-		
+		<repository>
+			<id>sonatype-oss-staging-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/staging</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	
 	<pluginRepositories>
