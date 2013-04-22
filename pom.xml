@@ -4,7 +4,7 @@
 	
 	<groupId>com.anthavio.maven</groupId>
 	<artifactId>anthavio-super-pom</artifactId>
-	<version>2-SNAPSHOT</version>
+	<version>1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>anthavio-super-pom</name>
@@ -266,7 +266,7 @@
 					<artifactId>maven-verifier-plugin</artifactId>
 					<version>1.0</version>
 				</plugin>
-				
+				<!--
 				<plugin>
 					<groupId>com.github.github</groupId>
 					<artifactId>site-maven-plugin</artifactId>
@@ -286,7 +286,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				
+				-->
 				<!-- Packaging types / tools -->
 
 				<plugin>
