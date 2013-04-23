@@ -42,11 +42,9 @@
   </scm>
 	
 	<distributionManagement>
-	
-		<site>
-			<id>github-project-site</id>
-			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
-		</site>
+		<!--
+			Using com.github.github:site-maven-plugin -	mvn site:site ghSite:site 
+		-->
 		
 		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
 		
@@ -89,7 +87,7 @@
 	
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>${project.scm.url}/issues</url>
+		<url>https://github.com/anthavio/${project.name}/issues</url>
 	</issueManagement>
 
 	<repositories>
@@ -148,12 +146,7 @@
 				<artifactId>maven-scm-manager-plexus</artifactId>
 				<version>1.8</version>
 			</extension>
-			<extension>
-				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
-				<artifactId>wagon-gitsite</artifactId>
-				<version>0.3.1</version>
-			</extension>
-
+			
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ssh</artifactId>
@@ -266,7 +259,7 @@
 					<artifactId>maven-verifier-plugin</artifactId>
 					<version>1.0</version>
 				</plugin>
-				<!--
+				
 				<plugin>
 					<groupId>com.github.github</groupId>
 					<artifactId>site-maven-plugin</artifactId>
@@ -286,7 +279,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				-->
+				
 				<!-- Packaging types / tools -->
 
 				<plugin>
@@ -459,7 +452,7 @@
 					<executions>
 						<execution>
 							<id>enforce-versions</id>
-							<phase>validate</phase>
+							<phase>compile</phase>
 							<goals>
 								<goal>enforce</goal>
 							</goals>
@@ -491,9 +484,10 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.4.1</version>
 					<configuration>
+						<goals>deploy site:site ghSite:site</goals>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<!-- release:perform attach sources&javadoc -->
-						<useReleaseProfile>false</useReleaseProfile>
+						<useReleaseProfile>true</useReleaseProfile>
 						<!-- release:perform don't accept command line arguments -->
 						<arguments>-Dstat-scm.skip=true</arguments>
 					</configuration>
@@ -710,7 +704,7 @@
 					<executions>
 						<execution>
 							<id>provide-metadata</id>
-							<phase>initialize</phase>
+							<phase>compile</phase>
 							<goals>
 								<goal>provide-buildmetadata</goal>
 							</goals>
@@ -799,6 +793,15 @@
 						<docencoding>${project.build.sourceEncoding}</docencoding>
 						<maxmemory>128m</maxmemory>
 					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadoc</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 	
 				<plugin>
