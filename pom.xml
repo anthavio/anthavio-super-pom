@@ -25,7 +25,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.java.target>1.6</project.build.java.target>
-		<aspectj.version>1.7.1</aspectj.version>
+		<aspectj.version>1.7.3</aspectj.version>
 	</properties>
 	
 	<url>http://anthavio.github.com/${project.name}</url>
@@ -641,7 +641,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>aspectj-maven-plugin</artifactId>
-					<version>1.4</version>
+					<version>1.5</version>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<complianceLevel>${project.build.java.target}</complianceLevel>
