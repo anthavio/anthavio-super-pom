@@ -26,6 +26,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.java.target>1.6</project.build.java.target>
 		<aspectj.version>1.7.3</aspectj.version>
+		<github.global.server>github</github.global.server>
 	</properties>
 	
 	<url>http://anthavio.github.com/${project.name}</url>
@@ -46,6 +47,11 @@
 		-->
 		
 		<downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+		
+		<site>
+			<id>github-project-site</id>
+			<url>gitsite:git@github.com/anthavio/${project.name}.git</url>
+		</site>
 		
 		<repository>
 			<id>sonatype-oss-staging</id>
@@ -156,6 +162,13 @@
 				<artifactId>wagon-webdav-jackrabbit</artifactId>
 				<version>2.4</version>
 			</extension>
+			
+			<extension>
+				<groupId>com.github.stephenc.wagon</groupId>
+				<artifactId>wagon-gitsite</artifactId>
+				<version>0.4</version>
+			</extension>
+			
 			<!--
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -235,7 +248,6 @@
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.3</version>
 					<configuration>
-						<!--<skipDeploy>true</skipDeploy>-->
 						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
 						<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 					</configuration>
@@ -259,6 +271,7 @@
 					<version>1.0</version>
 				</plugin>
 				
+				<!-- https://github.com/github/maven-plugins/issues/22 -->
 				<plugin>
 					<groupId>com.github.github</groupId>
 					<artifactId>site-maven-plugin</artifactId>
@@ -268,6 +281,7 @@
 					</configuration>
 					<executions>
 						<execution>
+							<id>github-site</id>
 							<phase>site-deploy</phase>
 							<goals>
 								<goal>site</goal>
