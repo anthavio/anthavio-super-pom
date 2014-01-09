@@ -4,7 +4,7 @@
 	
 	<groupId>net.anthavio.maven</groupId>
 	<artifactId>anthavio-super-pom</artifactId>
-	<version>2-SNAPSHOT</version>
+	<version>1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>anthavio-super-pom</name>
@@ -494,12 +494,15 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.4.2</version>
 					<configuration>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
 						<goals>deploy site:site ghSite:site</goals>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<!-- release:perform attach sources&javadoc -->
 						<useReleaseProfile>true</useReleaseProfile>
 						<!-- release:perform don't accept command line arguments -->
 						<arguments>-Dstat-scm.skip=true</arguments>
+						<!-- profile to sign artifacts, etc -->
+						<releaseProfiles>release</releaseProfiles>
 					</configuration>
 				</plugin>
 				
@@ -1194,4 +1197,28 @@
 		
 	</build>
 
+	<profiles>
+		<profile>
+			<id>release</id>
+			<!-- Hooked in via maven-release-plugin -->
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	  
 </project>
