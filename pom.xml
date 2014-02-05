@@ -726,6 +726,7 @@
 						</execution>
 					</executions>
 					<configuration>
+						<createXmlReport>false</createXmlReport>
 						<buildDatePattern>dd.MM.yyyy HH:mm:ss</buildDatePattern>
 						<hideCommandLineInfo>false</hideCommandLineInfo>
 						<hideJavaOptsInfo>false</hideJavaOptsInfo>
