@@ -132,14 +132,8 @@
 			<extension>
 				<groupId>org.apache.maven.scm</groupId>
 				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>1.8</version>
+				<version>1.9</version>
 			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>1.8</version>
-			</extension>
-			
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ssh</artifactId>
@@ -149,7 +143,7 @@
 			<extension>
 				<groupId>com.github.stephenc.wagon</groupId>
 				<artifactId>wagon-gitsite</artifactId>
-				<version>0.4</version>
+				<version>0.4.1</version>
 			</extension>
 			
 			<!--
