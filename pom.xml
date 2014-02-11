@@ -145,11 +145,6 @@
 				<artifactId>wagon-ssh</artifactId>
 				<version>2.6</version>
 			</extension>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-webdav-jackrabbit</artifactId>
-				<version>2.6</version>
-			</extension>
 			
 			<extension>
 				<groupId>com.github.stephenc.wagon</groupId>
@@ -327,6 +322,7 @@
 				</plugin>
 
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>2.4</version>
 					<configuration>
@@ -368,6 +364,7 @@
 				</plugin>
 
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-rar-plugin</artifactId>
 					<version>2.3</version>
 					<configuration>
@@ -388,6 +385,7 @@
 				</plugin>
 
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.4</version>
 					<configuration>
@@ -478,7 +476,7 @@
 						<dependency>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>extra-enforcer-rules</artifactId>
-							<version>1.0-alpha-5</version>
+							<version>1.0-beta-2</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -715,7 +713,7 @@
 				<plugin>
 					<groupId>de.smartics.maven.plugin</groupId>
 					<artifactId>buildmetadata-maven-plugin</artifactId>
-					<version>1.1.8</version>
+					<version>1.3.0</version>
 					<executions>
 						<execution>
 							<id>provide-metadata</id>
@@ -732,6 +730,13 @@
 						<hideMavenOptsInfo>false</hideMavenOptsInfo>
 						<addEnvInfo>false</addEnvInfo>
 					</configuration>
+					<dependencies>
+						<dependency>
+				      <groupId>org.apache.maven.scm</groupId>
+				      <artifactId>maven-scm-provider-gitexe</artifactId>
+				      <version>1.9</version>
+				    </dependency>
+					</dependencies>
 				</plugin>
 				
 				<plugin>
@@ -739,7 +744,7 @@
 					<artifactId>apt-maven-plugin</artifactId>
 					<version>1.1.1</version>
 					<configuration>
-						<outputDirectory>target/generated-sources/querydsl</outputDirectory>
+						<outputDirectory>target/generated-sources/querydsl-jpa</outputDirectory>
 						<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
 						<options>
 							<!-- 
