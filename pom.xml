@@ -29,6 +29,8 @@
 		<aspectj.version>1.7.4</aspectj.version>
 		<github.global.server>github</github.global.server>
 		
+		<enforcer.skip>false</enforcer.skip>
+		<buildMetaData.skip>false</buildMetaData.skip>
 		<maven.source.skip>false</maven.source.skip>
 		<maven.javadoc.skip>false</maven.javadoc.skip>
 	</properties>
@@ -453,6 +455,7 @@
 						</execution>
 					</executions>
 					<configuration>
+						<skip>${enforcer.skip}</skip>
 						<rules>
 							<requireJavaVersion>
 								<version>${enforce.java.version}</version>
@@ -721,6 +724,7 @@
 						</execution>
 					</executions>
 					<configuration>
+						<skip>${buildMetaData.skip}</skip>
 						<createXmlReport>false</createXmlReport>
 						<buildDatePattern>yyyy-MM-dd HH:mm:ss Z</buildDatePattern>
 						<hideCommandLineInfo>false</hideCommandLineInfo>
