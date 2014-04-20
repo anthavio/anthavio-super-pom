@@ -4,7 +4,7 @@
 	
 	<groupId>net.anthavio.maven</groupId>
 	<artifactId>anthavio-super-pom</artifactId>
-	<version>3-SNAPSHOT</version>
+	<version>2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>anthavio-super-pom</name>
@@ -492,7 +492,6 @@
 					<version>2.5</version>
 					<configuration>
 						<tagNameFormat>v@{project.version}</tagNameFormat>
-						<goals>deploy site:site ghSite:site</goals>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<!-- release:perform attach sources&javadoc -->
 						<useReleaseProfile>true</useReleaseProfile>
@@ -500,6 +499,8 @@
 						<arguments>-Dstat-scm.skip=true</arguments>
 						<!-- profile to sign artifacts, etc -->
 						<releaseProfiles>release</releaseProfiles>
+						<!-- <goals>deploy site:site ghSite:site</goals> -->
+						<goals>deploy</goals>
 					</configuration>
 				</plugin>
 				
