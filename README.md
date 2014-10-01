@@ -27,7 +27,7 @@ Use in pom.xml
   <parent>
 		<groupId>net.anthavio.maven</groupId>
 		<artifactId>anthavio-super-pom</artifactId>
-		<version>1</version>
+		<version>2</version>
 	</parent>
 ```
 
