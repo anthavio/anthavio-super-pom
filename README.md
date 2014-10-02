@@ -1,5 +1,6 @@
 anthavio-super-pom
 ==================
+[![Build Status](https://vanek.ci.cloudbees.com/buildStatus/icon?job=anthavio-ci-example-snapshot)](https://vanek.ci.cloudbees.com/job/anthavio-ci-example-snapshot/)
 
 Classic parent/super pom. Sets many many many defaults
   - license: lgpl-3.0
