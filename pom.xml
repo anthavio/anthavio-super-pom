@@ -8,9 +8,8 @@
 	<packaging>pom</packaging>
 	
 	<name>anthavio-super-pom</name>
-re
 	<description>Maven Super Pom</description>
-	
+
 	<inceptionYear>2012</inceptionYear>
 	
 	<licenses>
