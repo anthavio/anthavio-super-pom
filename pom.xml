@@ -111,6 +111,11 @@
 		</developer>
 	</developers>
 	
+	<organization>
+		<name>Anthavio</name>
+		<url>http://dev.anthavio.net</url>
+	</organization>
+
 	<build>
 
 		<defaultGoal>install</defaultGoal>
@@ -592,6 +597,59 @@
 				</plugin>
 				
 				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<!--
+						<header>com/mycila/maven/plugin/license/templates/LGPL-3.txt</header>
+						<header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+						-->
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<properties>
+							<owner>${project.organization.name}</owner>
+							<email>${project.organization.url}</email>
+						</properties>
+						<includes>
+							<nclude>**/*.java</nclude>
+						</includes>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>process-sources</phase>
+							<goals>
+								<goal>format</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>1.7</version>
+					<configuration>
+						<!-- mvn license:license-list -->
+						<!--
+						<licenseName>lgpl_v3</licenseName> 
+						<licenseName>apache_v2</licenseName>
+						-->
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<includes>
+							<include>**/*.java</include>
+						</includes>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>process-sources</phase>
+							<goals>
+								<goal>update-file-header</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				
+				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>sql-maven-plugin</artifactId>
 					<version>1.5</version>
@@ -621,7 +679,7 @@
 				<plugin>
 					<groupId>org.eluder.coveralls</groupId>
 					<artifactId>coveralls-maven-plugin</artifactId>
-					<version>2.2.0</version>
+					<version>3.0.1</version>
 					<configuration>
 						<repoToken>${coveralls.repoToken}</repoToken>
 					</configuration>
@@ -1009,29 +1067,29 @@
 								
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.jvnet.jaxb2.maven2</groupId>
-										<artifactId>maven-jaxb21-plugin</artifactId>
-										<versionRange>[0.0.1,)</versionRange>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>license-maven-plugin</artifactId>
+										<versionRange>[1.0,)</versionRange>
 										<goals>
-											<goal>generate</goal>
+											<goal>update-file-header</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- better run manualy -->
+										<ignore/>
 									</action>
 								</pluginExecution>
 								
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.jvnet.jaxb2.maven2</groupId>
-										<artifactId>maven-jaxb22-plugin</artifactId>
-										<versionRange>[0.0.1,)</versionRange>
+										<groupId>com.mycila</groupId>
+										<artifactId>license-maven-plugin</artifactId>
+										<versionRange>[1.0,)</versionRange>
 										<goals>
-											<goal>generate</goal>
+											<goal>format</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore /> <!-- better run manualy -->
+										<ignore/>
 									</action>
 								</pluginExecution>
 								
