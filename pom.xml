@@ -715,8 +715,8 @@
 					</executions>
 					<configuration>
 						<skip>${buildmetadata.skip}</skip>
-						<createXmlReport>false</createXmlReport>
-						<buildDatePattern>yyyy-MM-dd HH:mm:ss Z</buildDatePattern>
+						<buildDatePattern>yyyy-MM-dd'T'HH:mm:ssZ</buildDatePattern>
+						<createXmlReport>true</createXmlReport>
 						<hideCommandLineInfo>false</hideCommandLineInfo>
 						<hideJavaOptsInfo>false</hideJavaOptsInfo>
 						<hideMavenOptsInfo>false</hideMavenOptsInfo>
