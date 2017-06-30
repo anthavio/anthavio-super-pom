@@ -83,15 +83,6 @@
 		<url>https://github.com/anthavio/anthavio-super-pom/issues</url>
 	</issueManagement>
 
-	<pluginRepositories>
-		<pluginRepository>
-		  <id>smartics</id>
-		  <url>http://www.smartics.eu/nexus/content/repositories/public</url>
-		  <releases><enabled>true</enabled></releases>
-		  <snapshots><enabled>false</enabled></snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<developers>
 		<developer>
 			<id>anthavio</id>
