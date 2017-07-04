@@ -4,7 +4,7 @@
 	
 	<groupId>net.anthavio.maven</groupId>
 	<artifactId>anthavio-super-pom</artifactId>
-	<version>5</version>
+	<version>6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>anthavio-super-pom</name>
@@ -42,7 +42,7 @@
 		<url>https://github.com/anthavio/anthavio-super-pom</url>
 		<connection>scm:git:git://github.com/anthavio/anthavio-super-pom.git</connection>
 		<developerConnection>scm:git:git@github.com:anthavio/anthavio-super-pom.git</developerConnection>
-	  <tag>v5</tag>
+	  <tag>HEAD</tag>
   </scm>
 	
 	<distributionManagement>
