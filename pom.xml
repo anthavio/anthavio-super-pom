@@ -23,7 +23,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<project.build.java.target>1.6</project.build.java.target>
+		<project.build.java.target>1.8</project.build.java.target>
 		<aspectj.version>1.8.3</aspectj.version>
 		
 		<enforce.java.version>${project.build.java.target}</enforce.java.version>
@@ -709,7 +709,7 @@
 				<plugin>
 					<groupId>de.smartics.maven.plugin</groupId>
 					<artifactId>buildmetadata-maven-plugin</artifactId>
-					<version>1.4.0</version>
+					<version>1.6.1</version>
 					<executions>
 						<execution>
 							<phase>initialize</phase>
@@ -727,13 +727,6 @@
 						<hideMavenOptsInfo>false</hideMavenOptsInfo>
 						<addEnvInfo>false</addEnvInfo>
 					</configuration>
-					<dependencies>
-						<dependency>
-				      <groupId>org.apache.maven.scm</groupId>
-				      <artifactId>maven-scm-provider-gitexe</artifactId>
-				      <version>1.6</version> <!-- does NOT work with newer versions -->
-				    </dependency>
-					</dependencies>
 				</plugin>
 				
 				<!-- https://github.com/mysema/apt-maven-plugin -->
@@ -1111,60 +1104,6 @@
 				<inherited>false</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<configuration>
-					<reportPlugins>
-						
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<reports>
-								<report>index</report>
-								<report>summary</report>
-								<report>cim</report>
-								<report>scm</report>
-								<report>project-team</report>
-								<report>issue-tracking</report>
-								<report>dependency-management</report>
-								<report>dependency-convergence</report>
-								<report>dependencies</report>
-								<report>plugin-management</report>
-								<report>plugins</report>
-							</reports>
-							<configuration>
-								<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-								<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-							</configuration>
-						</plugin>
-						
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-changes-plugin</artifactId>
-							<reports>
-								<report>changes-report</report>
-							</reports>
-							<configuration>
-								<xmlPath>${basedir}/src/changes.xml</xmlPath>
-							</configuration>
-						</plugin>
-
-						<plugin>
-							<groupId>de.smartics.maven.plugin</groupId>
-							<artifactId>buildmetadata-maven-plugin</artifactId>
-							<reports>
-								<report>buildmetadata-report</report>
-							</reports>
-						</plugin>
-						<!--
-						<plugin>
-							<groupId>net.sf</groupId>
-							<artifactId>stat-scm</artifactId>
-							<configuration>
-								<skip>${stat-scm.skip}</skip>
-							</configuration>
-						</plugin>
-						-->
-					</reportPlugins>
-				</configuration>
 			</plugin>
 
 			<plugin>
@@ -1197,6 +1136,72 @@
 		</plugins>
 		
 	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+          			<reportSet>
+						<reports>
+							<report>index</report>
+							<report>summary</report>
+							<report>cim</report>
+							<report>scm</report>
+							<report>project-team</report>
+							<report>issue-tracking</report>
+							<report>dependency-management</report>
+							<report>dependency-convergence</report>
+							<report>dependencies</report>
+							<report>plugin-management</report>
+							<report>plugins</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<reportSets>
+          			<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<xmlPath>${basedir}/src/changes.xml</xmlPath>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>de.smartics.maven.plugin</groupId>
+				<artifactId>buildmetadata-maven-plugin</artifactId>
+				<reportSets>
+          			<reportSet>
+						<reports>
+							<report>buildmetadata-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!--
+			<plugin>
+				<groupId>net.sf</groupId>
+				<artifactId>stat-scm</artifactId>
+				<configuration>
+					<skip>${stat-scm.skip}</skip>
+				</configuration>
+			</plugin>
+			-->
+		</plugins>
+	</reporting>
 
 	<profiles>
 		<profile>
